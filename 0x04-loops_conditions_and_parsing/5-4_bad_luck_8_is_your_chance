@@ -1,4 +1,5 @@
 #!/bin/bash
+# script that loops from 1 to 10 and
 n=1
 while [ $n -le 10 ]
 do
