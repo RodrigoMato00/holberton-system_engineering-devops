@@ -1,0 +1,7 @@
+#!/bin/bash
+c=0
+until [ ! $c -lt 10 ]
+do
+  echo "Best School"
+  c=$((c + 1))
+done

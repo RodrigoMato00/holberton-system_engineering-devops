@@ -1,0 +1,6 @@
+#!/bin/bash
+#displays numbers from 1 to 20 and
+n=0
+while [ $n -le 20 ]
+echo "$n"
+x=$(( x + 1 ))

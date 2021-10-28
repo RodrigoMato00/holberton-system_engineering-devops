@@ -1,0 +1,5 @@
+
+
+for (i = 0; s1[i]; i++)
+    j++;
+s3 = malloc(sizeof) *j + 1)
