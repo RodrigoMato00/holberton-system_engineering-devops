@@ -26,7 +26,7 @@ trap sig_term TERM
 trap sig_quit QUIT
 trap sig_int INT
 
-$$ > /var/run/myscript.pid
+$$ > /var/run/my.pid
 
 while (true); do
     echo "To infinity and beyond"
