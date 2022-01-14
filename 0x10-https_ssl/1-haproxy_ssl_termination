@@ -1,17 +1,1 @@
 #!/usr/bin/env bash
-# domain and subdomine
-
-display_info ()
-{
-    domain="$1"
-    sub="$2"
-    dig "$sub.$domain" | awk '/ANSWER SECTION:/{getline; printf "The subdomain %s is a %s record and points to %s\n", su, $4, $5}' su="$sub"
-}
-
-for sud in "www" "lb-01" "web-01" "web-02"
-do
-    if [ -z "$2" ] || [ "$2" == "$sub" ] ;
-    then
-	display_info "$1" "$sub"
-    fi
-done
