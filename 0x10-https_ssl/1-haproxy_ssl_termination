@@ -4,14 +4,14 @@
 display_info ()
 {
     domain="$1"
-    subd="$2"
-    dig "$subd.$domain" | awk '/ANSWER SECTION:/{getline; printf "The subdomain %s is a %s record and points to %s\n", su, $4, $5}' su="$subd"
+    sub="$2"
+    dig "$sub.$domain" | awk '/ANSWER SECTION:/{getline; printf "The subdomain %s is a %s record and points to %s\n", su, $4, $5}' su="$sub"
 }
 
-for sudb in "www" "lb-01" "web-01" "web-02"
+for sud in "www" "lb-01" "web-01" "web-02"
 do
-    if [ -z "$2" ] || [ "$2" == "$subd" ] ;
+    if [ -z "$2" ] || [ "$2" == "$sub" ] ;
     then
-	display_info "$1" "$subd"
+	display_info "$1" "$sub"
     fi
 done
