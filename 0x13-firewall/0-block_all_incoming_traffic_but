@@ -13,3 +13,5 @@ sudo ufw allow 443
 sudo ufw allow 80
 #reiniciar firewall y habilitar
 sudo ufw enable
+#verificar estado de servicios activos en el ufw
+sudo ufw status numbered
