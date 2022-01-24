@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+#install ufw, Configure ufw in 22 (SSH), 443 (HTTPS SSL), 80 (HTTP)
+
+#instalar UFW
+sudo apt install ufw
+#habilitar configuracion de ufw
+sudo ufw default deny incoming
+#agregando conexion por ssh
+sudo ufw allow 22
+#agregando puerto 443 https
+sudo ufw allow 443
+#agregando puerto 80 http
+sudo ufw allow 80
+#reiniciar firewall y habilitar
+sudo ufw enable
