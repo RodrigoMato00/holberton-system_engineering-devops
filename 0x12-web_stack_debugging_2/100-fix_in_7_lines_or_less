@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-#Bash script must be 7 lines long or less
+# nginx config in 7 lines
 sudo pkill -f apache2
-sudo sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
-sudo sed -i "s/80/8080/g" /etc/nginx/sites-available/default
+sudo sed -i 's/80 default_server/8080 default_server/g' /etc/nginx/sites-available/default
 sudo chmod 644 /etc/nginx/nginx.conf
-sudo -u nginx service nginx start
+sudo chown nginx:nginx /etc/nginx/nginx.conf
+sudo -u nginx service nginx restart
