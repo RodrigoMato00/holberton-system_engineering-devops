@@ -13,7 +13,7 @@ import sys
 if __name__ == "__main__":
 
     url = "https://jsonplaceholder.typicode.com/users/"
-    user = requests.get(url + sys.argv[1]).json()
+    user = requests.get(url + "users/{}".format(argv[1])).json()
     todo = requests.get(url + sys.argv[1] + "/todos").json()
 
     tasks = []
