@@ -27,7 +27,7 @@ if __name__ == "__main__":
 
         for task in tasks:
             data = ['"' + sys.argv[1] + '"', '"' +
-                    username + '"', '"' +
+                    name + '"', '"' +
                     str(task.get('completed')) + '"', '"' +
                     task.get('title') + '"']
 
