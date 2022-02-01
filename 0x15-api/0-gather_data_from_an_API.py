@@ -15,10 +15,10 @@ if __name__ == '__main__':
                        argv[1])
     dic = json.loads(req.text)
     name = dic.get('name')
-    req1 = requests.get("https://jsonplaceholder.typicode.com/todos/" +
+    req = requests.get("https://jsonplaceholder.typicode.com/todos/" +
                         "?userId=" + argv[1])
 
-    todos = json.loads(req1.text)
+    todos = json.loads(req.text)
     tasks = len(todos)
     done = [task for task in todos if task.get('completed')]
     tasks_done = len(done)
