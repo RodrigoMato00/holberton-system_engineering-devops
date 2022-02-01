@@ -1,29 +1,46 @@
 #!/usr/bin/python3
-"""
-script that, using this REST API,
-for a given employee ID,
-returns information about
-his/her TODO list progress
-"""
-import json
-import requests
-from sys import argv
+""" JSon API """
 
-if __name__ == '__main__':
 
-    req = requests.get("https://jsonplaceholder.typicode.com/users/" +
-                       argv[1])
-    dic = json.loads(req.text)
-    name = dic.get('name')
-    req1 = requests.get("https://jsonplaceholder.typicode.com/todos/" +
-                        "?userId=" + argv[1])
+if __name__ == "__main__":
+    import requests
+    from sys import argv
 
-    todos = json.loads(req1.text)
-    tasks = len(todos)
-    done = [task for task in todos if task.get('completed')]
-    tasks_done = len(done)
-    print("Employee {} is done with tasks({}/{}):".
-          format(name, tasks_done, tasks))
+    def find_user():
+        """ find the user """
+        response = requests.get('https://jsonplaceholder.typicode.com/users')
+        list_users = response.json()
 
-    for task in done:
-        print("\t", task.get('title'))
+        for user in list_users:
+            if user["id"] == int(argv[1]):
+                return user
+
+    def find_todo():
+        """ find todos """
+        todos = []
+        total_todos = 0
+        response = requests.get('https://jsonplaceholder.typicode.com/todos')
+        list_todo = response.json()
+
+        for todo in list_todo:
+            if todo['userId'] == int(argv[1]):
+                total_todos += 1
+            if todo['userId'] == int(argv[1]) and todo['completed'] is True:
+                todos.append(todo["title"])
+        return todos, total_todos
+
+    def user_todo():
+        """ display funcs """
+        leni = 0
+
+        user_found = find_user()
+        todo_found = find_todo()
+        leni = len(todo_found[0])
+
+        print('Employee {} is done with tasks({}/{}):'.
+              format(user_found["name"], leni, todo_found[1]))
+
+        for x in range(leni):
+            print('\t {}'.format(todo_found[0][x]))
+
+    user_todo()
