@@ -19,11 +19,11 @@ if __name__ == "__main__":
 
     todos = json.loads(req.text)
     tasks = [task for task in todos]
-    ar = {sys.argv[1]: []}
+    ar = {argv[1]: []}
 
     for task in tasks:
         task_dict = {"task": task.get('title'), 'completed':
                      task.get('completed'), 'username': name}
-        ans.get(sys.argv[1]).append(task_dict)
-    with open(sys.argv[1] + ".json", "w") as file:
+        ar.get(argv[1]).append(task_dict)
+    with open(argv[1] + ".json", "w") as file:
         json.dump(ar, file)
