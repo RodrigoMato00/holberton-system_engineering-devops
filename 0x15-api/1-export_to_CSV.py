@@ -16,7 +16,7 @@ if __name__ == "__main__":
     req = requests.get("https://jsonplaceholder.typicode.com/users/" +
                        sys.argv[1])
     dic = json.loads(req.text)
-    username = dic.get('username')
+    name = dic.get('username')
     req = requests.get("https://jsonplaceholder.typicode.com/todos/" +
                        "?userId=" + sys.argv[1])
 
