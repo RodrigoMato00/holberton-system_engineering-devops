@@ -10,13 +10,16 @@ import requests
 from sys import argv
 
 if __name__ == '__main__':
+    import json
+    import requests
+    from sys import argv
 
     req = requests.get("https://jsonplaceholder.typicode.com/users/" +
                        argv[1])
     dic = json.loads(req.text)
     name = dic.get('name')
     req = requests.get("https://jsonplaceholder.typicode.com/todos/" +
-                        "?userId=" + argv[1])
+                       "?userId=" + argv[1])
 
     todos = json.loads(req.text)
     tasks = len(todos)
