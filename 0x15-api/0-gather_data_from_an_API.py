@@ -5,29 +5,23 @@ for a given employee ID,
 returns information about
 his/her TODO list progress
 """
-
 import requests
 from sys import argv
 
+if __name__ == '__main__':
 
-if __name__ == "__main__":
+    if len(argv) == 2 and argv[1].isdigit():
+        url = 'https://jsonplaceholder.typicode.com/'
+        user = requests.get(url+'users/{}'.format(argv[1])).json()["name"]
+        request = requests.get(url+'todos?userId={}'.format(argv[1]))
 
-    users = "https://jsonplaceholder.typicode.com/users"
-    todos = "https://jsonplaceholder.typicode.com/todos"
+        dic = request.json()
+        number = 0
+        t_name = ""
 
-    id = argv[1]
-    request_u = requests.get(users, params={'id': id})
-    request_t = requests.get(todos, params={'userId': id})
-
-    tasks = request_t.json()
-    all_tasks = []
-    for task in tasks:
-        if task.get("completed") is True:
-            all_tasks.append(task)
-
-    user = request_u.json()
-    name = user[0].get("name")
-    print("Employee {} is done with tasks({}/{}):".format(name, len(all_tasks), len(tasks)))
-
-    for task in all_tasks:
-        print("\t {}".format(task.get("title")))
+        for task in dic:
+            if task['completed'] is True:
+                number += 1
+                t_name += "\t " + task["title"] + '\n'
+        print("Employee {} is done with tasks({}/20):".format(user, number))
+        print(t_name, end="")
