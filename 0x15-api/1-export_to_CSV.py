@@ -11,14 +11,14 @@ File name must be: USER_ID.csv
 if __name__ == "__main__":
     import json
     import requests
-    import sys
+    from sys import argv
 
     req = requests.get("https://jsonplaceholder.typicode.com/users/" +
-                       sys.argv[1])
+                       argv[1])
     dic = json.loads(req.text)
     name = dic.get('username')
     req = requests.get("https://jsonplaceholder.typicode.com/todos/" +
-                       "?userId=" + sys.argv[1])
+                       "?userId=" + argv[1])
 
     todos = json.loads(req.text)
     tasks = [task for task in todos]
