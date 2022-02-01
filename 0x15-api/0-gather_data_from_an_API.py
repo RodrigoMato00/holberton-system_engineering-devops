@@ -26,4 +26,4 @@ if __name__ == '__main__':
           format(name, tasks_done, tasks))
 
     for task in done:
-        print("\t ", task.get('title'))
+        print("\t", task.get('title'))
