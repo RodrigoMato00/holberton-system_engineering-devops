@@ -11,7 +11,7 @@ if __name__ == "__main__":
     dic = json.loads(req.text)
     username = dic.get('username')
     req = requests.get("https://jsonplaceholder.typicode.com/todos/" +
-                        "?userId=" + sys.argv[1])
+                       "?userId=" + sys.argv[1])
 
     todos = json.loads(req.text)
     tasks = [task for task in todos]
