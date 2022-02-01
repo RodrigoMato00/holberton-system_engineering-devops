@@ -10,10 +10,10 @@ if __name__ == "__main__":
                        sys.argv[1])
     dic = json.loads(req.text)
     username = dic.get('username')
-    req1 = requests.get("https://jsonplaceholder.typicode.com/todos/" +
+    req = requests.get("https://jsonplaceholder.typicode.com/todos/" +
                         "?userId=" + sys.argv[1])
 
-    todos = json.loads(req1.text)
+    todos = json.loads(req.text)
     tasks = [task for task in todos]
 
     with open(sys.argv[1] + ".csv", "w") as file:
