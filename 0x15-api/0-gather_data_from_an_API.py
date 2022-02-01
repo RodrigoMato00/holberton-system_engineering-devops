@@ -12,14 +12,22 @@ from sys import argv
 
 if __name__ == "__main__":
 
-    url = "https://jsonplaceholder.typicode.com/"
-    user = requests.get(url + "users/{}".format(argv[1])).json()
-    todo = requests.get(url + "todos", params={"userId": argv[1]}).json()
+    users = "https://jsonplaceholder.typicode.com/users"
+    todos = "https://jsonplaceholder.typicode.com/todos"
 
-    tasks = [task.get("title") for task in todo
-             if task.get("completed") is True]
+    id = argv[1]
+    request_u = requests.get(users, params={'id': id})
+    request_t = requests.get(todos, params={'userId': id})
 
-    print("Employee {} is done with tasks({}/{}):"
-          .format(user.get('name'), len(tasks), len(todo)))
+    tasks = request_t.json()
+    all_tasks = []
+    for task in tasks:
+        if task.get("completed") is True:
+            all_tasks.append(task)
 
-    [print("\t {}".format(complete)) for complete in tasks]
+    user = request_u.json()
+    name = user[0].get("name")
+    print("Employee {} is done with tasks({}/{}):".format(name, len(all_tasks), len(tasks)))
+
+    for task in all_tasks:
+        print("\t {}".format(task.get("title")))
